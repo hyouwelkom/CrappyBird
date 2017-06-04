@@ -1,6 +1,5 @@
 package jeu;
 
-import javafx.scene.layout.AnchorPane;
 
 import javax.swing.*;
 
