@@ -1,3 +1,9 @@
+# Fichiers projet intellij
+.idea/*
+out/
+*.iml
+
+
 # Compiled class file
 *.class
 
