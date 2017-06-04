@@ -21,12 +21,13 @@ public class Scene extends JPanel {
     private Tube tubeDown2;
     private Tube tubeDown3;
 
+    Bird flappyBird;
+
     private final int WIDTH_WALLPAPER = 140;
     private final int DIST_TUBE = 250;
     private final int HOLE_TUBE = 120;
 
     int xBackground;
-    private int mvTubeX;
     private int tubeX;
 
     private Random rand;
@@ -42,7 +43,6 @@ public class Scene extends JPanel {
 
         this.xBackground = 0;
         this.tubeX = 100;
-        this.mvTubeX = 0;
 
         this.tubeUp1 = new Tube(this.tubeX, -150, "../img/tubeUp.png");
         this.tubeDown1 = new Tube(this.tubeX, 250, "../img/tubeDown.png");
@@ -51,7 +51,13 @@ public class Scene extends JPanel {
         this.tubeUp3 = new Tube(this.tubeX + this.DIST_TUBE * 2, -120, "../img/tubeUp.png");
         this.tubeDown3 = new Tube(this.tubeX + this.DIST_TUBE * 2, 280, "../img/tubeDown.png");
 
+        this.flappyBird = new Bird (100, 150, "../img/bird1.png");
+
         rand = new Random();
+
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addKeyListener(new Keyboard());
 
         Thread defilScreen = new Thread(new Time());
         defilScreen.start();
@@ -63,6 +69,8 @@ public class Scene extends JPanel {
     public void paintComponent (Graphics g) {
         this.moveScreen(g);
         this.moveTube(g);
+        this.flappyBird.setY(this.flappyBird.getY() + 1);
+        g.drawImage(this.flappyBird.getImgBird(), this.flappyBird.getX(), this.flappyBird.getY(), null);
     }
 
     private void moveScreen (Graphics g) {
